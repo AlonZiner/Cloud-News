@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
-const cors = require('cors')
+const cors = require('cors');
 
 dotenv.config({ path: './config/config.env' });
 
@@ -12,14 +12,15 @@ dotenv.config({ path: './config/config.env' });
 // Routes Import
 // ----------------------------------
 const list = require('./routes/list');
+const index = require('./routes/index');
 
 
 // ----------------------------------
 // Express configuration
 // ----------------------------------
 const app = express();
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -29,6 +30,7 @@ if (process.env.NODE_ENV === 'development') {
 // API Routes
 // ----------------------------------
 app.use('/api/v1/list', list);
+app.use('/',index);
 
 // ----------------------------------
 // Express server
