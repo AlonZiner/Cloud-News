@@ -1,15 +1,37 @@
 const express = require('express');
-const bodyParser = require('body-parser')
-const path = require('path');
+const dotenv = require('dotenv');
+const morgan = require('morgan');
+const cors = require('cors')
+
+dotenv.config({ path: './config/config.env' });
+
+// const connectDB = require('./config/db');
+// connectDB();
+
+// ----------------------------------
+// Routes Import
+// ----------------------------------
+const list = require('./routes/list');
+
+
+// ----------------------------------
+// Express configuration
+// ----------------------------------
 const app = express();
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.json())
+app.use(cors())
 
-app.get('/ping', function (req, res) {
- return res.send('pong');
-});
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// ----------------------------------
+// API Routes
+// ----------------------------------
+app.use('/api/v1/list', list);
 
-app.listen(process.env.PORT || 8080);
+// ----------------------------------
+// Express server
+// ----------------------------------
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
