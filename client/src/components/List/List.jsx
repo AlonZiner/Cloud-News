@@ -50,7 +50,7 @@ const List = ({ editItem }) => {
   return (
     <div className={style.listWrap}>
       {
-        state.list.map(item => (
+        state?.list && state.list.map(item => (
           <div className={style.list} key={item._id}>
             <FontAwesomeIcon
               icon={faCheckSquare}

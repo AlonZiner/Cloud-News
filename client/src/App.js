@@ -1,15 +1,14 @@
 import React, { useContext, useReducer, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-
 import Store from './store/store';
 import reducer from './store/reducer';
-
-import List from './components/List/List';
-import Form from './components/Form/Form';
-import Image from './components/Image/Image';
-
+import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import style from './App.module.scss';
+import Navbar from "./components/Navbar/Navbar";
+import SingleNews from "./components/SingleNews/SingleNews";
+import AddNews from "./components/AddNews/AddNews";
+import AddCategories from "./components/AddCategories/AddCategories";
 
 const App = () => {
   const initialState = useContext(Store);
@@ -32,21 +31,16 @@ const App = () => {
 
   return (
     <Store.Provider value={{ state, dispatch }}>
-      <div className={style.app}>
-        <div className={style.todo}>
-          <Image />
-          <span className={style.button} onClick={setView}>
-            <FontAwesomeIcon icon={faPlus} className={formView ? style.rotate : ''} />
-          </span>
-          <div className={style.body}>
-            {
-              formView
-                ? <Form closeForm={closeForm} edit={edit} clearEdit={clearEdit} />
-                : <List editItem={editItem} />
-            }
+        <Router>
+          <div className={style.app}>
+            <Navbar/>
           </div>
-        </div>
-      </div>
+          <Switch>
+            <Route path="/news/:id" component={SingleNews}/>
+            <Route path="/add-news/" component={AddNews}/>
+            <Route path="/add-categories/" component={AddCategories}/>
+          </Switch>
+        </Router>
     </Store.Provider>
   );
 }
