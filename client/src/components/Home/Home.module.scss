@@ -1,0 +1,9 @@
+.title {
+  text-align: center;
+  font-size: 45px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}

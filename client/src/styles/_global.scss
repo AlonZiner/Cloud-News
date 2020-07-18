@@ -3,3 +3,10 @@
 body  {
   font-family: 'Jost', sans-serif;
 }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  color: #fff;
+  background: radial-gradient(circle closest-corner at center 125px,#222,black 40%) no-repeat;
+}

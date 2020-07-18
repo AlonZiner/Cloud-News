@@ -1,0 +1,28 @@
+.navbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1300px;
+  margin: auto;
+}
+.nav {
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #fff;
+  margin-right: 2rem;
+}
+.header {
+  border-bottom: 2px solid #ccc;
+}
+
+.logo {
+  background: url("/atmospheric.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 165px;
+  height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 import SingleNews from "./components/SingleNews/SingleNews";
 import AddNews from "./components/AddNews/AddNews";
 import AddCategories from "./components/AddCategories/AddCategories";
+import Home from "./components/Home/Home";
 
 const App = () => {
   const initialState = useContext(Store);
@@ -34,12 +35,15 @@ const App = () => {
         <Router>
           <div className={style.app}>
             <Navbar/>
+            <div className={style.body}>
+              <Switch>
+                <Route path="/news/:id" component={SingleNews}/>
+                <Route path="/add-news/" component={AddNews}/>
+                <Route path="/add-categories/" component={AddCategories}/>
+                <Route path="/" component={Home}/>
+              </Switch>
+            </div>
           </div>
-          <Switch>
-            <Route path="/news/:id" component={SingleNews}/>
-            <Route path="/add-news/" component={AddNews}/>
-            <Route path="/add-categories/" component={AddCategories}/>
-          </Switch>
         </Router>
     </Store.Provider>
   );
