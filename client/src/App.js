@@ -14,21 +14,23 @@ import Home from "./components/Home/Home";
 const App = () => {
   const initialState = useContext(Store);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [formView, setFormView] = useState(false);
-  const [edit, setEdit] = useState(false);
 
-  const setView = () => setFormView(!formView);
+  /**
+   * TODO:
+   *  Get news\categories from db when application loads
+   */
+  const [news,setNews] = useState([]);
+  const [categories,setCategories] = useState([]);
 
-  const closeForm = () => setFormView(false);
-
-  const editItem = item => {
-    setEdit(item);
-    setFormView(true);
+  const addCategory = (newCat) => {
+      const newCategories = [...categories, newCat];
+      setCategories(newCategories);
   };
 
-  const clearEdit = () => {
-    setEdit(false);
-  }
+  const addNews = newNews => {
+    const newNewsArr = [...news, newNews];
+    setNews(newNewsArr);
+  };
 
   return (
     <Store.Provider value={{ state, dispatch }}>
@@ -38,15 +40,21 @@ const App = () => {
             <div className={style.body}>
               <Switch>
                 <Route path="/news/:id" component={SingleNews}/>
-                <Route path="/add-news/" component={AddNews}/>
-                <Route path="/add-categories/" component={AddCategories}/>
-                <Route path="/" component={Home}/>
+                <Route path="/add-news/">
+                  <AddNews addNews={addNews}/>
+                </Route>
+                <Route path="/add-categories/">
+                    <AddCategories addCategory={addCategory}/>
+                </Route>
+                <Route path="/">
+                  <Home categories={categories} news={news}/>
+                </Route>
               </Switch>
             </div>
           </div>
         </Router>
     </Store.Provider>
   );
-}
+};
 
 export default App;

@@ -3,7 +3,6 @@ import style from "./Article.module.scss";
 
 
 const Article = (props) => {
-    debugger;
     return (
         <div className={style.singleArticle}>
             <h4>

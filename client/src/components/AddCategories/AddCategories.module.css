@@ -1,3 +1,10 @@
+.form {
+  padding: 1rem;
+}
 
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
 
 /*# sourceMappingURL=AddCategories.module.css.map */
