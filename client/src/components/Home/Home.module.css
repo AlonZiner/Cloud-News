@@ -21,6 +21,10 @@
   margin-top: 10px;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .meta {
   font-size: 0.75em;
   color: #8a8a8a;

@@ -42,7 +42,7 @@ const Home = (props) => {
                         /**
                          * TODO make link
                          */
-                        <Link to={{pathname: `/news/${index}`, state: {article: article} }} className={style.nav}>
+                        <Link to={{pathname: `/news/${index}`, state: {article: article} }} className={style.link}>
                             <li className={style.article} key={index}>
                                 <img src={article.imgUrl} alt=""/>
                                 <h4>{article.title}</h4>
