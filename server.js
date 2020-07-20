@@ -32,6 +32,11 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/v1/list', list);
 app.use('/',index);
 
+app.route('/test')
+  .get((req, res) => {
+    res.status(200).json("server working");
+  });
+
 // ----------------------------------
 // Express server
 // ----------------------------------
