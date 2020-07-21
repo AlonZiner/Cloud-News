@@ -10,6 +10,7 @@ import SingleNews from "./components/SingleNews/SingleNews";
 import AddNews from "./components/AddNews/AddNews";
 import AddCategories from "./components/AddCategories/AddCategories";
 import Home from "./components/Home/Home";
+import categoriesService from "./services/categoriesService";
 
 const App = () => {
   const initialState = useContext(Store);
@@ -22,7 +23,10 @@ const App = () => {
   const [news,setNews] = useState([]);
   const [categories,setCategories] = useState([]);
 
-  const addCategory = (newCat) => {
+  const addCategory = async (newCat) => {
+      const cat = await categoriesService.addCategory({title:newCat});
+      console.log(cat);
+
       const newCategories = [...categories, newCat];
       setCategories(newCategories);
   };
