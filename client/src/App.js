@@ -39,7 +39,7 @@ const App = (props) => {
   };
 
   const addNews = async (newNews) => {
-    await categoriesService.addCategory(newNews);
+    await newsService.addNews(newNews);
     const newNewsArr = [...news, newNews];
     setNews(newNewsArr);
   };
