@@ -1,12 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import style from "./AddCategories.module.css"
-
 
 const AddCategories = (props) => {
 
     const [category,setCategory] = useState("");
 
-    const saveCat = e => {
+    const saveCat = async (e) => {
         e.preventDefault();
         props.addCategory(category);
     };
@@ -26,7 +25,12 @@ const AddCategories = (props) => {
                     <input className={"submit"} type="submit" value={"Save"} placeholder={"Save"} onClick={saveCat}/>
                 </div>
             </form>
-
+            Catergories:
+            <ul>
+                {!!props.categories && props.categories.map(function(cat){
+                    return <li>{cat.title}</li>;
+                })}
+            </ul>
         </div>
     );
 };

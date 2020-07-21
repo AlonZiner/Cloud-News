@@ -1,11 +1,10 @@
 import axios from 'axios';
-
 import { config } from "../config/config"
 
-export class categoriesService {
-  static url = `${config.apiUrl}/categories`;
+export class newsService {
+  static url = `${config.apiUrl}/news`;
 
-  static async fetchCategories() {
+  static async fetchNews() {
     try {
       const response = await axios.get(this.url);
       return response.data;
@@ -14,7 +13,7 @@ export class categoriesService {
     }
   }
 
-  static async addCategory(data) {
+  static async addNews(data) {
     try {
       const response = await axios.post(this.url, data);
       return response.data;
@@ -23,7 +22,7 @@ export class categoriesService {
     }
   }
 
-  static async updateCategory(data) {
+  static async updateNews(data) {
     try {
       await axios.put(this.url, data);
       return data;
@@ -32,7 +31,7 @@ export class categoriesService {
     }
   }
 
-  static async deleteCategory(id) {
+  static async deleteNews(id) {
     try {
       await axios.delete(this.url, { data: { id } });
       return id;
@@ -42,4 +41,4 @@ export class categoriesService {
   }
 }
 
-export default categoriesService;
+export default newsService;

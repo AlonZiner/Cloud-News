@@ -20,15 +20,15 @@ const Home = (props) => {
     };
 
     useEffect(() => {
-        var articles = [];
-        for (var i = 1 ; i < 20 ; i++){
-            const article = createRandomArticle(i);
-            articles.push(article);
-        }
-        setArticles(articles);
+        // var articles = [];
+        // for (var i = 1 ; i < 20 ; i++){
+        //     const article = createRandomArticle(i);
+        //     articles.push(article);
+        // }
+        // setArticles(articles);
 
-        // setArticles(props.news);
-        // setCategories(props.categories);
+        setArticles(props.news);
+        setCategories(props.categories);
     },[props.news,props.categories]);
 
     return (

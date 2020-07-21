@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState } from 'react';
+import React, { useContext, useReducer, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import Store from './store/store';
@@ -11,8 +11,9 @@ import AddNews from "./components/AddNews/AddNews";
 import AddCategories from "./components/AddCategories/AddCategories";
 import Home from "./components/Home/Home";
 import categoriesService from "./services/categoriesService";
+import newsService from "./services/newsService";
 
-const App = () => {
+const App = (props) => {
   const initialState = useContext(Store);
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -23,15 +24,22 @@ const App = () => {
   const [news,setNews] = useState([]);
   const [categories,setCategories] = useState([]);
 
-  const addCategory = async (newCat) => {
-      const cat = await categoriesService.addCategory({title:newCat});
-      console.log(cat);
+  useEffect(async () => {
+    const fetchedCategories = await categoriesService.fetchCategories();
+    setCategories(fetchedCategories);
 
+    const fetchedNews = await newsService.fetchNews();
+    setNews(fetchedNews);
+  }, news?.length); // when to rerender?
+
+  const addCategory = async (newCat) => {
+      await categoriesService.addCategory({title:newCat});
       const newCategories = [...categories, newCat];
       setCategories(newCategories);
   };
 
-  const addNews = newNews => {
+  const addNews = async (newNews) => {
+    await categoriesService.addCategory(newNews);
     const newNewsArr = [...news, newNews];
     setNews(newNewsArr);
   };
@@ -48,7 +56,7 @@ const App = () => {
                   <AddNews addNews={addNews}/>
                 </Route>
                 <Route path="/add-categories/">
-                    <AddCategories addCategory={addCategory}/>
+                    <AddCategories addCategory={addCategory} categories={categories}/>
                 </Route>
                 <Route path="/">
                   <Home categories={categories} news={news}/>
