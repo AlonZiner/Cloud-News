@@ -16,21 +16,18 @@ import newsService from "./services/newsService";
 const App = (props) => {
   const initialState = useContext(Store);
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  /**
-   * TODO:
-   *  Get news\categories from db when application loads
-   */
   const [news,setNews] = useState([]);
   const [categories,setCategories] = useState([]);
 
-  useEffect(async () => {
-    const fetchedCategories = await categoriesService.fetchCategories();
-    setCategories(fetchedCategories);
-
-    const fetchedNews = await newsService.fetchNews();
-    setNews(fetchedNews);
-  }, news?.length); // when to rerender?
+  useEffect(() => {
+    (async function fetchData(){
+      const fetchedCategories = await categoriesService.fetchCategories();
+      setCategories(fetchedCategories);
+      
+      const fetchedNews = await newsService.fetchNews();
+      setNews(fetchedNews);
+    })();
+  }, []); // when to rerender?
 
   const addCategory = async (newCat) => {
       await categoriesService.addCategory({title:newCat});
@@ -53,13 +50,13 @@ const App = (props) => {
               <Switch>
                 <Route path="/news/:id" component={SingleNews}/>
                 <Route path="/add-news/">
-                  <AddNews addNews={addNews}/>
+                  <AddNews addNews={addNews} categories={categories}/>
                 </Route>
                 <Route path="/add-categories/">
                     <AddCategories addCategory={addCategory} categories={categories}/>
                 </Route>
                 <Route path="/">
-                  <Home categories={categories} news={news}/>
+                  <Home news={news}/>
                 </Route>
               </Switch>
             </div>

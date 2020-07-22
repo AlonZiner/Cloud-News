@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import style from "./AddNews.module.css";
+import CategoriesSelect from "./../CategoriesSelect/categoriesSelect";
 
 const AddNews = (props) => {
 
@@ -38,6 +39,10 @@ const AddNews = (props) => {
                 <div className={"form-group"}>
                     <label htmlFor="imgUrl">Image Url</label>
                     <input id={"imgUrl"} name={"imgUrl"} onChange={onChange} className={"form-control"} type="url"/>
+                </div>
+                <div className={"form-group"}>
+                    <label htmlFor="category">Category</label>
+                    <CategoriesSelect categories={props.categories}/>
                 </div>
                 <div className={style.right}>
                     <input className={"submit"} type="submit" value={"Save"} placeholder={"Save"} onClick={onSave}/>
