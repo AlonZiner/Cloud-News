@@ -12,6 +12,12 @@ const AddNews = (props) => {
         setNews(newNews);
     };
 
+    const handleCategorySelect = (selectedCat) => {
+        const newNews = {...news};
+        newNews.category = selectedCat.value;
+        setNews(newNews);
+    };
+
     const onSave = e => {
         e.preventDefault();
         props.addNews(news);
@@ -42,7 +48,7 @@ const AddNews = (props) => {
                 </div>
                 <div className={"form-group"}>
                     <label htmlFor="category">Category</label>
-                    <CategoriesSelect className={style.select} categories={props.categories}/>
+                    <CategoriesSelect className={style.select} handleCategorySelect={handleCategorySelect} categories={props.categories}/>
                 </div>
                 <div className={style.right}>
                     <input className={"submit"} type="submit" value={"Save"} placeholder={"Save"} onClick={onSave}/>

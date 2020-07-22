@@ -7,9 +7,13 @@ const CategoriesSelect = (props) => {
     return { value: c._id, label: c.title, style: {width:'250px'}};
   });
 
+  const handleChange = (selectedOption) => {
+    props.handleCategorySelect(selectedOption);
+  };
+
   return (
     <div className={"react-select"}>
-      {!!options && <Select  options={options} />}
+      {!!options && <Select onChange={handleChange} options={options} />}
     </div>
   );
 };
