@@ -2,8 +2,12 @@ import React, {useState, useEffect} from "react";
 import style from "./AddCategories.module.css"
 
 const AddCategories = (props) => {
-
+    const [categories,setCategories] =  useState([]);
     const [category,setCategory] = useState("");
+
+    useEffect( () => {
+        setCategories(props.categories);
+    },[props.categories]);
 
     const saveCat = async (e) => {
         e.preventDefault();
@@ -26,9 +30,13 @@ const AddCategories = (props) => {
                 </div>
             </form>
             Catergories:
-            <ul>
+            <ul className={style.labelContainer}>
                 {!!props.categories && props.categories.map(function(cat){
-                    return <li>{cat.title}</li>;
+                    return <li>
+                        <div className={style.label}>
+                            {cat.title}
+                        </div>
+                    </li>;
                 })}
             </ul>
         </div>

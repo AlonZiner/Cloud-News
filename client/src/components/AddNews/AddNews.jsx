@@ -42,7 +42,7 @@ const AddNews = (props) => {
                 </div>
                 <div className={"form-group"}>
                     <label htmlFor="category">Category</label>
-                    <CategoriesSelect categories={props.categories}/>
+                    <CategoriesSelect className={style.select} categories={props.categories}/>
                 </div>
                 <div className={style.right}>
                     <input className={"submit"} type="submit" value={"Save"} placeholder={"Save"} onClick={onSave}/>

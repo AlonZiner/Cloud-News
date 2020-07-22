@@ -29,4 +29,10 @@
   justify-content: center;
 }
 
+.adminButton {
+  padding: 0.5rem 1rem;
+  background: #80c684;
+  margin-left: auto;
+}
+
 /*# sourceMappingURL=Navbar.module.css.map */

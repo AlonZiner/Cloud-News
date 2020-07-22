@@ -8,27 +8,11 @@ const Home = (props) => {
     const [articles,setArticles] = useState([]);
     const [categories,setCategories] = useState([]);
 
-    const createRandomArticle = (i) => {
-      const article = {
-          author: "Yoni",
-          date: "12.12.12",
-          title: `Title ${i}`,
-          imgUrl: "https://picsum.photos/200/300",
-          desc: `description ${i} description ${i} description ${i} description ${i} description ${i} description ${i}`
-      };
-      return article;
-    };
-
     useEffect(() => {
-        // var articles = [];
-        // for (var i = 1 ; i < 20 ; i++){
-        //     const article = createRandomArticle(i);
-        //     articles.push(article);
-        // }
-        // setArticles(articles);
-
-        setArticles(props.news);
-        setCategories(props.categories);
+        var articles = [];
+        setArticles([...props.news]);
+        // setArticles(props.news);
+        // setCategories(props.categories);
     },[props.news,props.categories]);
 
     return (
@@ -39,10 +23,7 @@ const Home = (props) => {
             <ul className={style.grid}>
                 {articles.length ? articles.map( (article,index) => {
                     return(
-                        /**
-                         * TODO make link
-                         */
-                        <Link to={{pathname: `/news/${index}`, state: {article: article} }} className={style.link}>
+                        <Link to={{pathname: `/news/${article._id}`, state: {article: article} }} className={style.link}>
                             <li className={style.article} key={index}>
                                 <img src={article.imgUrl} alt=""/>
                                 <h4>{article.title}</h4>

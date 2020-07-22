@@ -13,6 +13,15 @@ export class newsService {
     }
   }
 
+  static async fetchNewsById(newsId) {
+    try {
+      const response = await axios.get(`${this.url}/${newsId}`);
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
   static async addNews(data) {
     try {
       const response = await axios.post(this.url, data);
