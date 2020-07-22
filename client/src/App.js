@@ -12,6 +12,7 @@ import AddCategories from "./components/AddCategories/AddCategories";
 import Home from "./components/Home/Home";
 import categoriesService from "./services/categoriesService";
 import newsService from "./services/newsService";
+import { isMobile, isChrome } from "react-device-detect";
 
 const App = (props) => {
   const initialState = useContext(Store);
@@ -40,6 +41,22 @@ const App = (props) => {
     const newNewsArr = [...news, newNews];
     setNews(newNewsArr);
   };
+
+  if (!isChrome){
+    return(
+      <div>
+        why dont you use chrome?! 😤
+      </div>
+    )
+  }
+
+  if (isMobile){
+    return(
+      <div>
+        No mobiles allowed 🤬
+      </div>
+    )
+  }
 
   return (
     <Store.Provider value={{ state, dispatch }}>
