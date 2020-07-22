@@ -32,6 +32,9 @@ const Home = (props) => {
                                     <small>{article.date}</small>
                                 </div>
                                 <div>
+                                    <small>Views: {article.views}</small>
+                                </div>
+                                <div>
                                     {article.desc}
                                 </div>
                             </li>
